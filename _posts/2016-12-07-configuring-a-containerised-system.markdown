@@ -4,8 +4,6 @@ title:  "Configuring a containerised system"
 date:   2016-12-07 16:47:00
 categories: containers
 ---
-# Configuring a containerised system
-
 There are five basic methods of passing configuration into a container.
 
 ## 1. Building in configuration files
