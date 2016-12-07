@@ -4,19 +4,18 @@ title:  "Microscaling with load-balancing in Amazon ECS part 1"
 date:   2015-11-07 15:00:00
 categories: containers microscaling
 ---
-Currently I am involved in the development of a digital imaging platform for libraries and other institutions (the Digital Library Cloud Service, see http://dlcs.info) This platform uses a wide palette of Amazon Web Services for the orchestration of moving image assets between storage systems, retrieval of metadata and the presentation of deep-zoom image tiles. It's sorta-kinda an "elastic image server" which supports the IIIF (http://iiif.io) standard.
+Currently I am involved in the development of a digital imaging platform for libraries and other institutions (the Digital Library Cloud Service, see [http://dlcs.info](http://dlcs.info)) This platform uses a wide palette of Amazon Web Services for the orchestration of moving image assets between storage systems, retrieval of metadata and the presentation of deep-zoom image tiles. It's sorta-kinda an "elastic image server" which supports the [IIIF](http://iiif.io) standard.
 
 The system is split into two layers - Orchestration and Image-Serving. Both of these are intended to auto-scale independently, and this has been achieved with the Orchestration layer by deploying it as an Elastic Beanstalk application. Since this application is (currently) a .Net application that lives in IIS, then this environment suits it well.
 
-The Image-Serving layer is Linux-based, comprising of a lightweight HTTP daemon (lighttpd) and Ruven Patel's IIPSrv (http://iipimage.sourceforge.net/) with optimised Jpeg-2000 support. This is quite easily deployed as a Docker container and that is what our current prototype uses.
+The Image-Serving layer is Linux-based, comprising of a lightweight HTTP daemon (lighttpd) and [Ruven Patel's IIPSrv](http://iipimage.sourceforge.net/) with optimised Jpeg-2000 support. This is quite easily deployed as a Docker container and that is what our current prototype uses.
 
 Since we are using Docker anyway, I looked into how Amazon's Elastic Container Service could be used to auto-scale the Image-Serving layer on demand.
 
 What I found was that the concept of a Service in ECS did not cover how I thought it could be used.
 
 ### Services under ECS
-
-(http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
+[ECS documentation about load balancing](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
 
 A Service in ECS represents parts of an application that are distributed across various Docker containers. A cluster of EC2 instances form a group of hosts that a Service may be deployed to. Each host may contain a maximum of one instance of a Service. When scaling occurs, the EC2 cluster can expand or contract with Auto-Scaling Group rules and the ECS Scheduler decides where new instances are placed.
 
@@ -28,7 +27,7 @@ When I saw the setup dialog for a Task in ECS mention the internal and external 
 
 What I wanted was the ability to work with multiple similar Docker containers populating EC2 cluster members dynamically in response to some metric - e.g. a CloudWatch alarm from our orchestration layer's load balancer. As that Elastic Beanstalk application scales in response to demand, so would the number of deployed containers up to the available space of the hosts in the cluster as defined in ECS.
 
-It turns out that this technique has a term - microscaling - and I've been researching it recently, including the offering from Force12.io - (http://force12.io/)
+It turns out that this technique has a term - microscaling - and I've been researching it recently, including the offering from [force12.io](http://force12.io/)
 
 Once the number of containers is under dynamic control, the cluster itself could then expand or contract by responding to a separate Auto-Scaling Group rule.
 
