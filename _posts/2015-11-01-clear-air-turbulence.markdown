@@ -6,3 +6,5 @@ categories: welcome
 ---
 I'll be writing here about various Inversion and coding-related topics.
 
+Main blog still at [http://www.fractos.com/](http://www.fractos.com/)
+
