@@ -4,8 +4,6 @@ title:  "Introducing Inversion"
 date:   2016-12-12 20:48:00
 categories: inversion
 ---
-# Inversion
-  
 *Repository: <https://github.com/guy-murphy/inversion-dev>*
 
 Inversion is a .Net library for writing *behavioural* or *reactive* code that utilises the Actor Model while also allowing isolation and decoupling from an environment in a manner reminiscent of [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture) (also known as "Ports and Adapters").
