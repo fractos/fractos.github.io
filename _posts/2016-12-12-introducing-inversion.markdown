@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Introducing Inversion"
+title:  "Introducing Inversion (draft)"
 date:   2016-12-12 20:48:00
 categories: inversion
 ---
