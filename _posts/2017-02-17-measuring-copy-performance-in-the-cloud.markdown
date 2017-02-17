@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Measuring copy performance in the cloud"
-date:   2015-03-10 11:15:00
+date:   2017-02-17 11:15:00
 categories: research
 ---
 
