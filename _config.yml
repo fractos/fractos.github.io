@@ -11,3 +11,5 @@ github_username:  fractos
 
 # Build settings
 markdown: kramdown
+gems:
+  - jekyll-feed
