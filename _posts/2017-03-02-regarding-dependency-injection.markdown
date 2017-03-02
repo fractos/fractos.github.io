@@ -20,4 +20,4 @@ The upshot being:
 
 Another in-depth article Guy wrote about Inversion of Control can be found here:
 
-[Guy Murphy - I come not to burn IoC, but to praise it](http://guy-murphy.github.io/2014/11/27/I-come-not-to-bury-IoC-but-to-praise-it/)
+[Guy Murphy - I come not to bury IoC, but to praise it](http://guy-murphy.github.io/2014/11/27/I-come-not-to-bury-IoC-but-to-praise-it/)
