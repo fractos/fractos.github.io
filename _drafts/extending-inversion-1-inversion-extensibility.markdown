@@ -5,15 +5,17 @@ date:   2017-03-11 14:24:48
 categories: inversion
 ---
 
-_This article is part of a series describing my various projects extending Inversion - a behavioural micro-framework for .Net_
+_This article is part of a series describing my various projects extending Inversion - a behavioural micro-framework for Microsoft .Net_.
 
-Inversion on github: [https://github.com/guy-murphy/inversion-dev](https://github.com/guy-murphy/inversion-dev)
+_Inversion on GitHub: [https://github.com/guy-murphy/inversion-dev](https://github.com/guy-murphy/inversion-dev)_
 
-Inversion.Extensibility on github: [https://github.com/fractos/inversion-extensibility](https://github.com/fractos/inversion-extensibility)
+_Inversion.Extensibility on GitHub: [https://github.com/fractos/inversion-extensibility](https://github.com/fractos/inversion-extensibility)_
 
-# Extended condition prototypes
+## Goals
 
-## Default available criteria
+The aim of this article is to demonstrate the current set of prototype criteria available in Inversion, and how these can be extended with custom logic.
+
+## Inversion.Process - Prototype defaults
 
 The IConfiguration mechanism for a PrototypedBehaviour (see [Inversion.Process](https://github.com/guy-murphy/inversion-dev/tree/master/Inversion.Process)) allows a bag of string tuples to be associated with an instantiation of a behaviour, such that they can carry criteria for the behaviour's Condition and also configuration items that are accessable during the Condition or Action methods. These can be defined in whatever service container you are using. For example, here is a simple setup for ParameterisedSequenceBehaviour using Inversion.Naiad:
 
@@ -56,5 +58,15 @@ Out of the box, the default [Inversion.Process.Behaviour.Prototype](https://gith
 | control-state | excludes | (x) | | TRUE if context.ControlState does not contain (x) |
 {:.mbtablestyle}
 <br />
-These criteria are defined as being instances of Case objects, as defined in the Prototype class. When any behaviour that inherits from PrototypedBehaviour (or PrototypedWebBehaviour) is constructed, the bag of tuples that make up its Configuration is examined and any Case that matches is added to an internal list of the instantiated behaviour. The list is checked during the Condition method after the base Condition has determined if the message name matches. The only Case functions that are added are those which match the Configuration tuples, which cuts down hugely on the logic that each behaviour needs to perform during their Condition evaluation.
+These criteria are defined with instances of Case objects, as defined in the Prototype class. When any behaviour that inherits from PrototypedBehaviour (or PrototypedWebBehaviour) is constructed, the bag of tuples that make up its Configuration is examined and any Case that matches is added to an internal list of the instantiated behaviour. The list is checked during the Condition method after the base version of Condition has determined if the message name matches. Because the list of Case functions is kept to only those that match the Configuration tuples, this cuts down hugely on the logic that each behaviour needs to perform during their Condition evaluation.
 
+## Inversion.Extensibility.Prototypes
+
+The Inversion.Extensibility repo contains the Prototypes class which can be used to extend the list of Cases that are available to configure PrototypedBehaviour instances with.
+
+By calling the static method AddPrototypes() during application startup, the following Case methods will become available to PrototypedBehaviour Configuration blocks:
+
+| Frame | Slot | Name | Value | Description |
+| ----- | ---- | ---- | ----- | ----------- |
+
+* TODO description GetEffectiveStringResult
