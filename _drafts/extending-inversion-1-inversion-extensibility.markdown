@@ -13,7 +13,7 @@ _Inversion.Extensibility on GitHub: [https://github.com/fractos/inversion-extens
 
 ## Goals
 
-The aim of this article is to demonstrate the current set of prototype criteria available in Inversion, and how these can be extended with custom logic.
+The aim of this article is to demonstrate the current set of prototype criteria available in Inversion, how these have been extended in Inversion.Extensibility, and how they can be further extended with custom logic.
 
 ## Inversion.Process - Prototype defaults
 
@@ -53,6 +53,14 @@ Out of the box, the default [Inversion.Process.Behaviour.Prototype](https://gith
 <br />
 These criteria are defined with instances of Case objects, as defined in the Prototype class. When any behaviour that inherits from PrototypedBehaviour (or PrototypedWebBehaviour) is constructed, the bag of tuples that make up its Configuration is examined and any Case that matches is added to an internal list of the instantiated behaviour. The list is checked during the Condition method after the base version of Condition has determined if the message name matches. Because the list of Case functions is kept to only those that match the Configuration tuples, this cuts down hugely on the logic that each behaviour needs to perform during their Condition evaluation.
 
+So, in this example:
+
+* TODO include gist of simple configuration of prototypedbehaviour here
+
+Only the following Case objects will be added to the instance of the PrototypedBehaviour's Configuration state:
+
+* TODO include gist of applicable Case stanzas
+
 ## Inversion.Extensibility.Prototypes
 
 The Inversion.Extensibility repo contains the Prototypes class which can be used to extend the list of Cases that are available to configure PrototypedBehaviour instances with.
@@ -80,7 +88,8 @@ By calling the static method AddPrototypes() during application startup, the fol
 <br />
 These give a great deal more flexibility in behaviour configuration, allowing the following to be reacted to:
 
-- values, partial content and JSONPath-addressed properties of control state items
+- values and partial content of control-state items
+- values of JSONPath-addressed properties of control-state items
 - type and partial content of context parameters
 - object cache membership
 
